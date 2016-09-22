@@ -10,6 +10,6 @@ $code = [Convert]::ToBase64String($ms.ToArray());
 
 # Construct an execution one liner
 
-$command = "Invoke-Expression `$(New-Object IO.StreamReader (" + "`$(New-Object IO.Compression.DeflateStream (" + "`$(New-Object IO.MemoryStream (,"+ "`$([Convert]::FromBase64String(`"$code`")))), " + "[IO.Compression.CompressionMode]::Decompress)),"+
+$command = "IEX `$(New-Object IO.StreamReader (" + "`$(New-Object IO.Compression.DeflateStream (" + "`$(New-Object IO.MemoryStream (,"+ "`$([Convert]::FromBase64String(`"$code`")))), " + "[IO.Compression.CompressionMode]::Decompress)),"+
     " [Text.Encoding]::ASCII)).ReadToEnd();"
 Write-Host $command
